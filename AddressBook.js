@@ -154,13 +154,24 @@ function editContact(personName){
       }
     })
 }
+//UC5 
+function deleteContact(deleteName){
+  let i = 0;
+  addressBookArray.forEach(contact => {
+      if ((contact.firstName + " " + contact.lastName) == (deleteName)) {
+          addressBookArray.splice(i, 1);
+          addressBookArray.indexOf()
+      }
+      i++;
+  });
+}
 {
   let again;
   do{
-    let choice = prompt("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Show Contacts : ")
+    let choice = prompt("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts : ")
     switch(parseInt(choice)){
       case 1:
-        console.log("Add Contact...")
+        console.log("Add Contact Details...")
         addContact()
         break;
       case 2:
@@ -169,6 +180,11 @@ function editContact(personName){
         editContact(editName);
         break;
       case 3:
+        console.log("Delete Contact...")
+        let deleteName = prompt("Enter the person name : ");
+        deleteContact(deleteName);
+        break;
+      case 4:
         console.log(addressBookArray);
         break;
       default:
