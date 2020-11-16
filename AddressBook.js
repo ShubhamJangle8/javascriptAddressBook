@@ -98,11 +98,18 @@ class Contact{
                           + this.phone + ", Email = " + this.email
   }
 }
-let contact;
+let contact1;
+let contact2;
 try{  
-  contact = new Contact("Shubham","Jangale","Jail Road","Nasik","Maharashtra","422101","9987646236","S0@gmail.com")
-  console.log("Contact Details are : " + contact)
+  contact1 = new Contact("Shubham","Jangale","Jail Road","Nasik","Maharashtra","422101","9987646236","S0@gmail.com")
+  contact2 = new Contact("Shubha","Jangale","Jail Road","Nasik","Maharashtra","22101","9987646236","S0@gmail.com")
+  console.log("Contact Details are : " + contact1)
+  console.log("Contact Details are : " + contact2)
 }
 catch(error){
   console.error(error)
 }
+let addressBookArray = new Array()
+addressBookArray.push(contact1)
+addressBookArray.push(contact2)
+console.log("Contacts in address book are : " + addressBookArray)
