@@ -1,15 +1,16 @@
 console.log("Welcome to Address Book Javascript")
+var prompt = require('prompt-sync')();
 class Contact{
-  constructor(firstName, lastName, address, city, state, zip, phone, email){
-    this.firstName = firstName
-    this.lastName = lastName
-    this.address = address
-    this.city = city
-    this.state = state
-    this.zip = zip
-    this.phone = phone
-    this.email = email
-  }
+  constructor(...params){
+    this.firstName = params[0];
+    this.lastName = params[1];
+    this.address = params[2];
+    this.city = params[3];
+    this.state = params[4];
+    this.zip = params[5];
+    this.phone = params[6];
+    this.email = params[7];
+}
   get firstName(){
     return this._firstName
   }
@@ -98,18 +99,81 @@ class Contact{
                           + this.phone + ", Email = " + this.email
   }
 }
-let contact1;
-let contact2;
-try{  
-  contact1 = new Contact("Shubham","Jangale","Jail Road","Nasik","Maharashtra","422101","9987646236","S0@gmail.com")
-  contact2 = new Contact("Shubha","Jangale","Jail Road","Nasik","Maharashtra","22101","9987646236","S0@gmail.com")
-  console.log("Contact Details are : " + contact1)
-  console.log("Contact Details are : " + contact2)
+function createContact(){
+  let contact
+  let fName = prompt("Enter first name: ");
+  let lName = prompt("Enter last name: ");
+  let address = prompt("Enter the address: ");
+  let city = prompt("Enter the city: ");
+  let state = prompt("Enter the state: ");
+  let zip = prompt("Enter the zip: ");
+  let phone = prompt("Enter the phone: ");
+  let email = prompt("Enter the email: ");
+  try{
+    contact = new Contact(fName,lName,address,city,state,zip,phone,email);
+    
+  }
+  catch(error){
+    console.error(error)
+  }
+  return contact;
 }
-catch(error){
-  console.error(error)
+
+let addressBookArray = new Array();
+//UC3
+function addContact(){  
+  addressBookArray.push(createContact());
 }
-let addressBookArray = new Array()
-addressBookArray.push(contact1)
-addressBookArray.push(contact2)
-console.log("Contacts in address book are : " + addressBookArray)
+//UC4
+function editContact(personName){
+  addressBookArray.forEach(
+    contact => {
+      if(contact._firstName + " " + contact._lastName == (personName)){
+        let choice = prompt("1. Edit address 2. Edit City 3. Edit State 4. Edit Phone 5. Exit : ");
+        switch(parseInt(choice)){
+          case 1:
+            let address = prompt("Enter new Address : ");
+            contact.address = address;
+            break;
+          case 2:
+            let newCity = prompt("Enter new city : ");
+            contact._city = newCity;
+            break;
+          case 3:
+            let state = prompt("Enter new State : ");
+            contact.state = state;
+            break;
+          case 4:
+            let phone = prompt("Enter new Phone number : ");
+            contact.phone = phone;
+            break;
+          case 5:
+            console.log("Nothing to change, EXIT...");
+            break;
+        }
+      }
+    })
+}
+{
+  let again;
+  do{
+    let choice = prompt("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Show Contacts : ")
+    switch(parseInt(choice)){
+      case 1:
+        console.log("Add Contact...")
+        addContact()
+        break;
+      case 2:
+        console.log("Edit Contact...")
+        let editName = prompt("Enter the person name : ");
+        editContact(editName);
+        break;
+      case 3:
+        console.log(addressBookArray);
+        break;
+      default:
+        console.log("Enter valid choice...")
+    }
+    again = prompt("Want to perform more ? ")
+  }while(again == "Yes")
+}
