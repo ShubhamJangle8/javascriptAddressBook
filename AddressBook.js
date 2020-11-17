@@ -187,10 +187,6 @@ function checkDuplicate(newContact) {
   });
 }
 //UC8
-function searchInCity(contact){
-  addressBookArray.filter()
-}
-//UC9
 function searchInCity(name, city){
   let contact = addressBookArray.filter(contact => ((contact.firstName + " " + contact.lastName) == name) && (contact.city == city))
   return contact
@@ -199,10 +195,19 @@ function searchInState(name, state){
   let contact = addressBookArray.filter(contact => ((contact.firstName + " " + contact.lastName) == name) && (contact.state == state))
   return contact
 }
+//UC9
+function viewPersonsByCity(city) {
+  let list = addressBookArray.filter(contact => contact.city == city);
+  return list;
+}
+function viewPersonsByState(city) {
+  let list = addressBookArray.filter(contact => contact.state == state);
+  return list;
+}
 {
   let again;
   while(true){
-    console.log("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts 6. Search In City : 7. Search in State")
+    console.log("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts 6. Search In City : 7. Search in State 8. View Contacts in City 9. View Contacts in State : ")
     let choice = prompt() 
     switch(parseInt(choice)){
       case 1:
@@ -235,6 +240,14 @@ function searchInState(name, state){
         let state = prompt("Enter the state you want to search contact in : ");
         console.log("Person in searched state is : " + searchInState(name, state));
         break;
+      case 8:
+        let city = prompt("Enter the city you want to view contacts for : ");
+        console.log("Contacts in this city are : " + viewPersonsByCity);
+        break
+      case 9:
+        let state = prompt("Enter the state you want to view contacts for : ");
+        console.log("Contacts in this state are : " + viewPersonsByState);
+        break
       default:
         console.log("Enter valid choice...");
     }
