@@ -118,13 +118,15 @@ function createContact(){
   return contact;
 }
 
-let addressBookArray = new Array();
 //UC3
+let addressBookArray = new Array();
 function addContact(){ 
-  let contact;
-  contact = createContact();
+  let contact = createContact();
   if (contact == undefined){
     console.log("Add contact with proper inputs")
+  }
+  if(checkDuplicate(contact)){
+    console.log("Contact already exists...")
   }
   else{
     addressBookArray.push(contact);
@@ -134,7 +136,7 @@ function addContact(){
 function editContact(personName){
   addressBookArray.forEach(
     contact => {
-      if(contact._firstName + " " + contact._lastName == (personName)){
+      if(contact.firstName + " " + contact.lastName == (personName)){
         let choice = prompt("1. Edit address 2. Edit City 3. Edit State 4. Edit Phone 5. Exit : ");
         switch(parseInt(choice)){
           case 1:
@@ -175,6 +177,14 @@ function deleteContact(deleteName){
 function countContacts(length){
   length++
   return length
+}
+//UC7
+function checkDuplicate(newContact) {
+  addressBookArray.forEach(contact => {
+      if ((contact.firstName + contact.lastName) == (newContact.firstName + newContact.lastName)) {
+          return true;
+      }
+  });
 }
 {
   let again;
