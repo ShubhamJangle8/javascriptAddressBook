@@ -120,13 +120,11 @@ function createContact(){
 
 //UC3
 let addressBookArray = new Array();
+let contact
 function addContact(){ 
-  let contact = createContact();
-  if (contact == undefined){
-    console.log("Add contact with proper inputs")
-  }
-  if(checkDuplicate(contact)){
-    console.log("Contact already exists...")
+  contact = createContact();
+  if(checkDuplicate(contact) || (contact == undefined)){
+    console.log("Add contact with proper inputs or Contact already exists...")
   }
   else{
     addressBookArray.push(contact);
@@ -200,7 +198,7 @@ function viewPersonsByCity(city) {
   let list = addressBookArray.filter(contact => contact.city == city);
   return list;
 }
-function viewPersonsByState(city) {
+function viewPersonsByState(state) {
   let list = addressBookArray.filter(contact => contact.state == state);
   return list;
 }
@@ -210,6 +208,17 @@ function countByCity(city) {
 }
 function countByState(state) {
   return addressBookArray.filter(contact => contact.state = state).reduce(countContacts, 0);
+}
+//UC11
+function compareByName(contact1, contact2){
+  let c1 = (contact1.firstName + " " + contact1.lastName).toUpperCase();
+  let c2 = (contact2.firstName + " " + contact2.lastName).toUpperCase();
+  if(c1 > c2) return 1;
+  if(c1 < c2) return -1;
+}
+function sortByName(){
+  let sortedList = addressBookArray.sort(compareByName);
+  return sortedList
 }
 {
   let again;
@@ -238,30 +247,34 @@ function countByState(state) {
         console.log("Number of contacts in address book are " + addressBookArray.reduce(countContacts, 0));
         break;
       case 6:
-        let name = prompt("Enter the person you want to search : ");
-        let city = prompt("Enter the city you want to search contact in : ");
-        console.log("Person in searched city is : " + searchInCity(name, city));
+        let cName = prompt("Enter the person you want to search : ");
+        let cityName = prompt("Enter the city you want to search contact in : ");
+        console.log("Person in searched city is : " + searchInCity(cName, cityName));
         break;
       case 7:
-        let name = prompt("Enter the person you want to search : ");
-        let state = prompt("Enter the state you want to search contact in : ");
-        console.log("Person in searched state is : " + searchInState(name, state));
+        let sName = prompt("Enter the person you want to search : ");
+        let stateName = prompt("Enter the state you want to search contact in : ");
+        console.log("Person in searched state is : " + searchInState(sName, stateName));
         break;
       case 8:
-        let city = prompt("Enter the city you want to view contacts for : ");
-        console.log("Contacts in this city are : " + viewPersonsByCity(city));
+        let viewCity = prompt("Enter the city you want to view contacts for : ");
+        console.log("Contacts in this city are : " + viewPersonsByCity(viewCity));
         break;
       case 9:
-        let state = prompt("Enter the state you want to view contacts for : ");
-        console.log("Contacts in this state are : " + viewPersonsByState(state));
+        let viewState = prompt("Enter the state you want to view contacts for : ");
+        console.log("Contacts in this state are : " + viewPersonsByState(viewState));
         break;
       case 10:
-        let city = prompt("Enter the city you want to count contacts for : ");
-        console.log("Number of contacts in this city are : " + countByCity(city));
+        let countCity = prompt("Enter the city you want to count contacts for : ");
+        console.log("Number of contacts in this city are : " + countByCity(countCity));
         break;
       case 11:
-        let state = prompt("Enter the state you want to count contacts for : ");
-        console.log("Number of contacts in this state are : " + countByState(state));
+        let countState = prompt("Enter the state you want to count contacts for : ");
+        console.log("Number of contacts in this state are : " + countByState(countState));
+        break;
+      case 12:
+        let sortedContactsByName = sortByName();
+        console.log(sortedContactsByName);
         break;
       default:
         console.log("Enter valid choice...");
