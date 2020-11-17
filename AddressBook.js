@@ -110,8 +110,7 @@ function createContact(){
   let phone = prompt("Enter the phone: ");
   let email = prompt("Enter the email: ");
   try{
-    contact = new Contact(fName,lName,address,city,state,zip,phone,email);
-    
+    contact = new Contact(fName,lName,address,city,state,zip,phone,email); 
   }
   catch(error){
     console.error(error)
@@ -121,8 +120,15 @@ function createContact(){
 
 let addressBookArray = new Array();
 //UC3
-function addContact(){  
-  addressBookArray.push(createContact());
+function addContact(){ 
+  let contact;
+  contact = createContact();
+  if (contact == undefined){
+    console.log("Add contact with proper inputs")
+  }
+  else{
+    addressBookArray.push(contact);
+  }
 }
 //UC4
 function editContact(personName){
@@ -165,10 +171,15 @@ function deleteContact(deleteName){
       i++;
   });
 }
+//UC6
+function countContacts(length){
+  length++
+  return length
+}
 {
   let again;
   do{
-    let choice = prompt("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts : ")
+    let choice = prompt("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts : ")
     switch(parseInt(choice)){
       case 1:
         console.log("Add Contact Details...")
@@ -185,8 +196,11 @@ function deleteContact(deleteName){
         deleteContact(deleteName);
         break;
       case 4:
-        console.log(addressBookArray);
+        console.log("Contacts in address book are : " + addressBookArray);
         break;
+      case 5:
+        console.log("Number of contacts in address book are " + addressBookArray.reduce(countContacts, 0))
+        break
       default:
         console.log("Enter valid choice...")
     }
