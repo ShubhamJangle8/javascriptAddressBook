@@ -186,10 +186,24 @@ function checkDuplicate(newContact) {
       }
   });
 }
+//UC8
+function searchInCity(contact){
+  addressBookArray.filter()
+}
+//UC9
+function searchInCity(name, city){
+  let contact = addressBookArray.filter(contact => ((contact.firstName + " " + contact.lastName) == name) && (contact.city == city))
+  return contact
+}
+function searchInState(name, state){
+  let contact = addressBookArray.filter(contact => ((contact.firstName + " " + contact.lastName) == name) && (contact.state == state))
+  return contact
+}
 {
   let again;
-  do{
-    let choice = prompt("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts : ")
+  while(true){
+    console.log("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts 6. Search In City : 7. Search in State")
+    let choice = prompt() 
     switch(parseInt(choice)){
       case 1:
         console.log("Add Contact Details...")
@@ -209,11 +223,23 @@ function checkDuplicate(newContact) {
         console.log("Contacts in address book are : " + addressBookArray);
         break;
       case 5:
-        console.log("Number of contacts in address book are " + addressBookArray.reduce(countContacts, 0))
-        break
+        console.log("Number of contacts in address book are " + addressBookArray.reduce(countContacts, 0));
+        break;
+      case 6:
+        let name = prompt("Enter the person you want to search : ");
+        let city = prompt("Enter the city you want to search contact in : ");
+        console.log("Person in searched city is : " + searchInCity(name, city));
+        break;
+      case 7:
+        let name = prompt("Enter the person you want to search : ");
+        let state = prompt("Enter the state you want to search contact in : ");
+        console.log("Person in searched state is : " + searchInState(name, state));
+        break;
       default:
-        console.log("Enter valid choice...")
+        console.log("Enter valid choice...");
     }
     again = prompt("Want to perform more ? ")
-  }while(again == "Yes")
+    if(again == "No")
+      break
+  }
 }
