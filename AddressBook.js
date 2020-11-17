@@ -223,7 +223,7 @@ function sortByName(){
 {
   let again;
   while(true){
-    console.log("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts 6. Search In City : 7. Search in State 8. View Contacts in City 9. View Contacts in State 10. Count Contacts in City 11. Count Contacts in State : ")
+    console.log("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts 6. Search In City : 7. Search in State 8. View Contacts in City 9. View Contacts in State 10. Count Contacts in City 11. Count Contacts in State 12. Sort Contacts by Name: ")
     let choice = prompt() 
     switch(parseInt(choice)){
       case 1:
