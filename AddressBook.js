@@ -204,10 +204,17 @@ function viewPersonsByState(city) {
   let list = addressBookArray.filter(contact => contact.state == state);
   return list;
 }
+//UC10
+function countByCity(city) {
+  return addressBookArray.filter(contact => contact.city = city).reduce(countContacts, 0);
+}
+function countByState(state) {
+  return addressBookArray.filter(contact => contact.state = state).reduce(countContacts, 0);
+}
 {
   let again;
   while(true){
-    console.log("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts 6. Search In City : 7. Search in State 8. View Contacts in City 9. View Contacts in State : ")
+    console.log("Enter the choice you want to do : 1. Add Contact 2. Edit Contact 3. Delete Contact 4. Show Contacts 5. Count Contacts 6. Search In City : 7. Search in State 8. View Contacts in City 9. View Contacts in State 10. Count Contacts in City 11. Count Contacts in State : ")
     let choice = prompt() 
     switch(parseInt(choice)){
       case 1:
@@ -242,12 +249,20 @@ function viewPersonsByState(city) {
         break;
       case 8:
         let city = prompt("Enter the city you want to view contacts for : ");
-        console.log("Contacts in this city are : " + viewPersonsByCity);
-        break
+        console.log("Contacts in this city are : " + viewPersonsByCity(city));
+        break;
       case 9:
         let state = prompt("Enter the state you want to view contacts for : ");
-        console.log("Contacts in this state are : " + viewPersonsByState);
-        break
+        console.log("Contacts in this state are : " + viewPersonsByState(state));
+        break;
+      case 10:
+        let city = prompt("Enter the city you want to count contacts for : ");
+        console.log("Number of contacts in this city are : " + countByCity(city));
+        break;
+      case 11:
+        let state = prompt("Enter the state you want to count contacts for : ");
+        console.log("Number of contacts in this state are : " + countByState(state));
+        break;
       default:
         console.log("Enter valid choice...");
     }
